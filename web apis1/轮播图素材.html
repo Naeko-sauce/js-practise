@@ -99,7 +99,7 @@
     <div class="slider-footer">
       <p>对人类来说会不会太超前了？</p>
       <ul class="slider-indicator">
-        <li class="active"></li>
+        <li></li>
         <li></li>
         <li></li>
         <li></li>
@@ -166,6 +166,11 @@
     imge.src = sliderData[radom].url;
     const p = document.querySelector('.slider-footer p');
     p.innerHTML = sliderData[radom].title;
+    const footer = document.querySelector('.slider-footer');
+    footer.style.backgroundColor = sliderData[radom].color;
+    //小圆点
+    const li = document.querySelector(`.slider-indicator li:nth-child(${radom + 1})`)
+    li.classList.add('active')
   </script>
 </body>
 
