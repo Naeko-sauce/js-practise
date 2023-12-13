@@ -1,5 +1,7 @@
 import * as  THREE from "three"
 // console.log(THREE)
+//导入轨道控制器
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 //创建一个场景
 const scene = new THREE.Scene()
 //要看得到东西就得创建一个相机,透视相机
@@ -27,4 +29,12 @@ renderer.setSize(window.innerWidth, window.innerHeight)
 //把渲染器添加到页面中
 document.body.appendChild(renderer.domElement)
 // 开始渲染
-renderer.render(scene, camera)
+
+//创建轨道控制器
+const controls = new OrbitControls(camera, renderer.domElement)
+//设置一个渲染函数
+function rendera() {
+    renderer.render(scene, camera)
+    requestAnimationFrame(rendera)
+}
+rendera()
