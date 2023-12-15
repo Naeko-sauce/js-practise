@@ -2,6 +2,8 @@ import * as  THREE from "three"
 // console.log(THREE)
 //导入轨道控制器
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
+//控制物体移动
+
 //创建一个场景
 const scene = new THREE.Scene()
 //要看得到东西就得创建一个相机,透视相机
@@ -21,7 +23,9 @@ const colora = new THREE.MeshBasicMaterial({
     color: 'red'
 })
 const cube = new THREE.Mesh(geometry, colora)
+
 scene.add(cube)
+
 //初始化渲染器
 const renderer = new THREE.WebGLRenderer()
 //设置渲染器的大小
@@ -38,6 +42,10 @@ const axes = new THREE.AxesHelper(5)
 //添加到场景当中
 scene.add(axes)
 function rendera() {
+    cube.position.x += 0.1
+    if (cube.position.x > 5) {
+        cube.position.x = 0
+    }
     renderer.render(scene, camera)
     //渲染下一帧的时候就会调用render函数
     requestAnimationFrame(rendera)
