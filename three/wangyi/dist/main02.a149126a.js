@@ -38901,7 +38901,7 @@ var OrbitControls = exports.OrbitControls = /*#__PURE__*/function (_EventDispatc
   }
   return _createClass(OrbitControls);
 }(_three.EventDispatcher);
-},{"three":"../node_modules/three/build/three.module.js"}],"main/main01.js":[function(require,module,exports) {
+},{"three":"../node_modules/three/build/three.module.js"}],"main/main02.js":[function(require,module,exports) {
 "use strict";
 
 var THREE = _interopRequireWildcard(require("three"));
@@ -38910,6 +38910,8 @@ function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return 
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 // console.log(THREE)
 //导入轨道控制器
+
+//控制物体移动
 
 //创建一个场景
 var scene = new THREE.Scene();
@@ -38929,7 +38931,9 @@ var colora = new THREE.MeshBasicMaterial({
   color: 'red'
 });
 var cube = new THREE.Mesh(geometry, colora);
+cube.position.set(5, 0, 0);
 scene.add(cube);
+
 //初始化渲染器
 var renderer = new THREE.WebGLRenderer();
 //设置渲染器的大小
@@ -39120,5 +39124,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","main/main01.js"], null)
-//# sourceMappingURL=/main01.d8574859.js.map
+},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","main/main02.js"], null)
+//# sourceMappingURL=/main02.a149126a.js.map
