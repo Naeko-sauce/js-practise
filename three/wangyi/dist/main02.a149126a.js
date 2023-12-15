@@ -38931,7 +38931,6 @@ var colora = new THREE.MeshBasicMaterial({
   color: 'red'
 });
 var cube = new THREE.Mesh(geometry, colora);
-cube.position.set(5, 0, 0);
 scene.add(cube);
 
 //初始化渲染器
@@ -38950,6 +38949,10 @@ var axes = new THREE.AxesHelper(5);
 //添加到场景当中
 scene.add(axes);
 function rendera() {
+  cube.position.x += 0.1;
+  if (cube.position.x > 5) {
+    cube.position.x = 0;
+  }
   renderer.render(scene, camera);
   //渲染下一帧的时候就会调用render函数
   requestAnimationFrame(rendera);
