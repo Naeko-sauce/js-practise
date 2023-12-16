@@ -46,9 +46,14 @@ cube.scale.x = 2
 cube.scale.y = 2
 //物体的旋转
 cube.rotation.x = Math.PI / 4
-function rendera() {
+function rendera(time) {
     //控制物体移动
-    cube.position.x += 0.1
+    // cube.position.x += 0.1
+    // if (cube.position.x > 5) {
+    //     cube.position.x = 0
+    // }
+    let t = time / 1000 % 5
+    cube.position.x = t * 1
     if (cube.position.x > 5) {
         cube.position.x = 0
     }
