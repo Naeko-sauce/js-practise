@@ -38953,17 +38953,16 @@ cube.scale.x = 2;
 cube.scale.y = 2;
 //物体的旋转
 cube.rotation.x = Math.PI / 4;
-function rendera(time) {
-  //控制物体移动
-  // cube.position.x += 0.1
-  // if (cube.position.x > 5) {
-  //     cube.position.x = 0
-  // }
-  var t = time / 1000 % 5;
+//设置时钟
+var clock = new THREE.Clock();
+function rendera() {
+  //获取时间总时长
+  var time = clock.getElapsedTime();
+  // 获取上一帧到当前帧的时间间隔（以秒为单位）
+  var delta = clock.getDelta();
+  var t = time % 5;
   cube.position.x = t * 1;
-  if (cube.position.x > 5) {
-    cube.position.x = 0;
-  }
+  console.log(t);
   renderer.render(scene, camera);
   //渲染下一帧的时候就会调用render函数
   requestAnimationFrame(rendera);
@@ -38994,7 +38993,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "35131" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "36787" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
