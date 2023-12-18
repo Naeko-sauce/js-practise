@@ -48,10 +48,32 @@ cube.scale.x = 2
 cube.scale.y = 2
 //物体的旋转
 cube.rotation.x = Math.PI / 4
-//设置时钟
-gsap.to(cube.position, { x: 5, duration: 5 })
+
+const move = gsap.to(cube.position, {
+    //设置循环次数-1就是无限循环
+    repeat: -1,
+    yoyo: true,
+    delay: 2,
+    x: 5, duration: 5, onStart: () => {
+        console.log('开始')
+    },
+    onComplete: () => {
+        console.log('结束')
+    }
+})
+document.addEventListener('click', () => {
+    console.log(move);
+    if (move.isActive()) {
+        move.pause()
+    } else {
+        move.resume()
+    }
+
+
+})
+
 //旋转
-gsap.to(cube.rotation, { y: Math.PI / 2, duration: 5 })
+gsap.to(cube.rotation, { y: Math.PI / 2, duration: 5, repeat: -1 })
 function rendera() {
 
     renderer.render(scene, camera)

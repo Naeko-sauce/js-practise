@@ -44330,15 +44330,34 @@ cube.scale.x = 2;
 cube.scale.y = 2;
 //物体的旋转
 cube.rotation.x = Math.PI / 4;
-//设置时钟
-_gsap.default.to(cube.position, {
+var move = _gsap.default.to(cube.position, {
+  //设置循环次数-1就是无限循环
+  repeat: -1,
+  yoyo: true,
+  delay: 2,
   x: 5,
-  duration: 5
+  duration: 5,
+  onStart: function onStart() {
+    console.log('开始');
+  },
+  onComplete: function onComplete() {
+    console.log('结束');
+  }
 });
+document.addEventListener('click', function () {
+  console.log(move);
+  if (move.isActive()) {
+    move.pause();
+  } else {
+    move.resume();
+  }
+});
+
 //旋转
 _gsap.default.to(cube.rotation, {
   y: Math.PI / 2,
-  duration: 5
+  duration: 5,
+  repeat: -1
 });
 function rendera() {
   renderer.render(scene, camera);
@@ -44371,7 +44390,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "35529" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38383" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
