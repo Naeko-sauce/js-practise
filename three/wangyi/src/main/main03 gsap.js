@@ -41,6 +41,8 @@ const controls = new OrbitControls(camera, renderer.domElement)
 //设置一个渲染函数
 //添加坐标轴辅助器
 const axes = new THREE.AxesHelper(5)
+//设置控制器阻尼效果
+controls.enableDamping = true
 //添加到场景当中
 scene.add(axes)
 //物体缩放
@@ -75,9 +77,20 @@ document.addEventListener('click', () => {
 //旋转
 gsap.to(cube.rotation, { y: Math.PI / 2, duration: 5, repeat: -1 })
 function rendera() {
-
+    controls.update()
     renderer.render(scene, camera)
     //渲染下一帧的时候就会调用render函数
     requestAnimationFrame(rendera)
 }
 rendera()
+//监听画面变化，更新渲染画面
+window.addEventListener('resize', () => {
+    //更新摄像头
+    camera.aspect = window.innerWidth / window.innerHeight;
+    //更新摄像机的投影矩阵
+    camera.updateProjectionMatrix();
+    //更新渲染器
+    renderer.setSize(window.innerWidth, window.innerHeight)
+    //设置渲染器的像素比
+    renderer.setPixelRatio(window.devicePixelRatio)
+})

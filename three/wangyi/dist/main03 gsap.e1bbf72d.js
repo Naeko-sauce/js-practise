@@ -44323,6 +44323,8 @@ var controls = new _OrbitControls.OrbitControls(camera, renderer.domElement);
 //设置一个渲染函数
 //添加坐标轴辅助器
 var axes = new THREE.AxesHelper(5);
+//设置控制器阻尼效果
+controls.enableDamping = true;
 //添加到场景当中
 scene.add(axes);
 //物体缩放
@@ -44360,11 +44362,23 @@ _gsap.default.to(cube.rotation, {
   repeat: -1
 });
 function rendera() {
+  controls.update();
   renderer.render(scene, camera);
   //渲染下一帧的时候就会调用render函数
   requestAnimationFrame(rendera);
 }
 rendera();
+//监听画面变化，更新渲染画面
+window.addEventListener('resize', function () {
+  //更新摄像头
+  camera.aspect = window.innerWidth / window.innerHeight;
+  //更新摄像机的投影矩阵
+  camera.updateProjectionMatrix();
+  //更新渲染器
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  //设置渲染器的像素比
+  renderer.setPixelRatio(window.devicePixelRatio);
+});
 },{"three":"../node_modules/three/build/three.module.js","three/examples/jsm/controls/OrbitControls":"../node_modules/three/examples/jsm/controls/OrbitControls.js","gsap":"../node_modules/gsap/index.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -44390,7 +44404,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38383" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43957" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
